@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0](https://github.com/florian-sanders/release-please-playground/compare/release-please-playground-v0.1.0...release-please-playground-v1.0.0) (2025-06-08)
+
+
+### ✨ Features
+
+* **toto:** add ([2f97f99](https://github.com/florian-sanders/release-please-playground/commit/2f97f99ffae3f56f37211f9683350861504ab7c1))
+
 ## 0.1.0 (2025-06-08)
 
 
