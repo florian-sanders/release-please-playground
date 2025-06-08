@@ -38,6 +38,6 @@ jobs:
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
-          git add zed-stylelint/extension.toml
+          git add extension.toml
           git commit -m "chore: bump extension.toml version to ${RELEASE_VERSION} [skip ci]"
           git push
