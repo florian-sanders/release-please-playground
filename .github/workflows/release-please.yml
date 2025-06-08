@@ -20,22 +20,3 @@ jobs:
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@v4
-
-      - name: Get Release Version
-        if: steps.release.outputs.release_created
-        run: |
-          echo "RELEASE_VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}" >> $GITHUB_ENV
-
-      - name: Update extension.toml version
-        if: steps.release.outputs.release_created
-        run: |
-          sed -i "s/^version = \".*\"/version = \"${RELEASE_VERSION}\"/" extension.toml
-
-      - name: Commit and push updated extension.toml
-        if: steps.release.outputs.release_created
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git add extension.toml
-          git commit -m "chore: bump extension.toml version to ${RELEASE_VERSION} [skip ci]"
-          git push
