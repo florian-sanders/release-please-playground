@@ -20,8 +20,6 @@ jobs:
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@v4
-        with:
-          release-type: rust
 
       - name: Get Release Version
         if: steps.release.outputs.release_created
