@@ -23,8 +23,7 @@ jobs:
         with:
           release-type: rust
           package-name: release-please-playground
-          release-as: 1.0.0
-          changelog-types: '[{"type":"feat","section":"Features"},{"type":"fix","section":"Bug Fixes"},{"type":"chore","section":"Chores"},{"type":"docs","section":"Documentation"},{"type":"refactor","section":"Refactoring"},{"type":"perf","section":"Performance"},{"type":"test","section":"Tests"},{"type":"ci","section":"CI"},{"type":"build","section":"Build System"}]'
+          changelog-types: '[{"type":"feat","section":"✨ Features"},{"type":"fix","section":"🐛 Bug Fixes"},{"type":"chore","section":"🔧 Chores"},{"type":"docs","section":"📚 Documentation"},{"type":"refactor","section":"♻️ Refactoring"},{"type":"perf","section":"⚡️ Performance"},{"type":"test","section":"✅ Tests"},{"type":"ci","section":"👷 CI"},{"type":"build","section":"🛠 Build System"}]'
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
           include-v-in-tag: false
