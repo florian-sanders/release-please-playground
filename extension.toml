@@ -1,0 +1,12 @@
+id = "stylelint"
+name = "Stylelint"
+version = "0.0.4"
+schema_version = 1
+authors = ["Florian Sanders <sanders.florian+zed@gmail.com>"]
+description = "Language server extension providing diagnostics and auto-fix for Stylelint"
+repository = "https://github.com/florian-sanders/zed-stylelint"
+
+[language_servers.stylelint-lsp]
+name = "Stylelint Language Server"
+language = "CSS"
+languages = ["CSS", "SCSS", "LESS", "JavaScript", "Vue.js"]

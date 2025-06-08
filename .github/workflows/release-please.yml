@@ -1,0 +1,48 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Release Please
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: rust
+          package-name: release-please-playground
+          release-as: 1.0.0
+          changelog-types: '[{"type":"feat","section":"Features"},{"type":"fix","section":"Bug Fixes"},{"type":"chore","section":"Chores"},{"type":"docs","section":"Documentation"},{"type":"refactor","section":"Refactoring"},{"type":"perf","section":"Performance"},{"type":"test","section":"Tests"},{"type":"ci","section":"CI"},{"type":"build","section":"Build System"}]'
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
+          include-v-in-tag: false
+
+      - name: Get Release Version
+        if: steps.release.outputs.release_created
+        run: |
+          echo "RELEASE_VERSION=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}" >> $GITHUB_ENV
+
+      - name: Update extension.toml version
+        if: steps.release.outputs.release_created
+        run: |
+          sed -i "s/^version = \".*\"/version = \"${RELEASE_VERSION}\"/" extension.toml
+
+      - name: Commit and push updated extension.toml
+        if: steps.release.outputs.release_created
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add zed-stylelint/extension.toml
+          git commit -m "chore: bump extension.toml version to ${RELEASE_VERSION} [skip ci]"
+          git push
